@@ -14,10 +14,10 @@ year_pairs = [
     2020,
 
 ]
-keywords="'Bioactive OR compounds OR Bioaccessibility'"
+keywords="nano delivery systems AND in vitro digestion"
 for y in year_pairs: 
+    keywords = keywords.replace(" ", "+")
     r = requests.get(f"https://api.crossref.org/works?query={keywords}&filter=from-created-date:{y},until-created-date:{y}")
-    # r = requests.get(f"https://scholar.google.com/scholar?q=Bioaccessibility&hl=pt-BR&as_sdt=0%2C5&as_vis=1&lookup=0&as_ylo=2005&as_yhi=2005")
     result = json.loads(r.text)
     print(y,  result["message"]["total-results"])
 
